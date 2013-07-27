@@ -57,11 +57,17 @@ namespace Poly2Tri {
 		public Polygon( IList<PolygonPoint> points ) {
 			if (points.Count < 3) throw new ArgumentException("List has fewer than 3 points", "points");
 
+#if DOTNET2
+			_points.Capacity = System.Math.Max (_points.Capacity,_points.Count + points.Count);
+			for (int i=0;i<points.Count;i++) _points.Add (points[i]);
+#else
+			_points.AddRange(points.Cast<TriangulationPoint>());
+#endif
+
 			// Lets do one sanity check that first and last point hasn't got same position
 			// Its something that often happen when importing polygon data from other formats
-			if (points[0].Equals(points[points.Count - 1])) points.RemoveAt(points.Count - 1);
-
-			_points.AddRange(points.Cast<TriangulationPoint>());
+			// Note: Removing from internal list since the argument "points" should not be modified
+			if (points[0].Equals(points[points.Count - 1])) _points.RemoveAt(_points.Count - 1);
 		}
 
 		/// <summary>
