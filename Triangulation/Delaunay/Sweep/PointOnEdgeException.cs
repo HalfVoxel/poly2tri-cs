@@ -36,11 +36,12 @@ namespace Poly2Tri {
 		public readonly TriangulationPoint A,B,C;
 
 		public PointOnEdgeException( string message, TriangulationPoint a, TriangulationPoint b, TriangulationPoint c )
-			: base(message)
+			: base(message+"\n"+a.ToString()+"\n"+b.ToString()+"\n"+c.ToString())
 		{
 			A=a;
 			B=b;
 			C=c;
 		}
+
 	}
 }
