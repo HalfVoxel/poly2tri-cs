@@ -35,7 +35,7 @@
 /// Future possibilities
 ///   Comments!
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public class AdvancingFrontNode {
 		public AdvancingFrontNode Next;
 		public AdvancingFrontNode Prev;

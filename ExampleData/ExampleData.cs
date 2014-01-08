@@ -35,7 +35,7 @@ using System.Drawing;
 using System.IO;
 using System.Globalization;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public static class ExampleData {
 		public static Polygon LoadDat( string filename, bool xflip, bool yflip ) {
 			var points = new List<PolygonPoint>();

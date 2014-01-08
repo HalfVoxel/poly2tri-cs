@@ -48,9 +48,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if !DOTNET2
 using System.Linq;
-
-namespace Poly2Tri {
+#endif
+namespace Pathfinding.Poly2Tri {
 	public static class DTSweep {
 		private const double PI_div2 = Math.PI / 2;
 		private const double PI_3div4 = 3 * Math.PI / 4;
@@ -471,7 +472,12 @@ namespace Poly2Tri {
 		/// <param name="eq"></param>
 		/// <param name="p">point on the edge between ep->eq</param>
 		private static void SplitEdge( TriangulationPoint ep, TriangulationPoint eq, TriangulationPoint p ) {
-			DTSweepConstraint edge = eq.Edges.First( e => e.Q==ep || e.P==ep );
+			#if !DOTNET2
+			//DTSweepConstraint edge = eq.Edges.First( e => e.Q==ep || e.P==ep );
+			#else
+			DTSweepConstraint edge = null;
+			for ( int i=0;i<eq.Edges.Count;i++) if (eq.Edges[i].Q == ep || eq.Edges[i].P == ep) { edge = eq.Edges[i]; break; }
+			#endif
 			edge.P = p;
 			new DTSweepConstraint(ep, p); // Et tu, Brute? --MM
 

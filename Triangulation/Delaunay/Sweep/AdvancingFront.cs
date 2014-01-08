@@ -38,7 +38,7 @@
 using System.Text;
 using System;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	/**
 	 * @author Thomas Åhlen (thahlen@gmail.com)
 	 */

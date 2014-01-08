@@ -42,7 +42,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public class DelaunayTriangle {
 		public FixedArray3<TriangulationPoint> Points;
 		public FixedArray3<DelaunayTriangle  > Neighbors;

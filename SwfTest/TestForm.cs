@@ -32,9 +32,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+#if !DOTNET2
 using System.Linq;
+#endif
 using System.Windows.Forms;
-using Poly2Tri;
+using Pathfinding.Poly2Tri;
 
 namespace SwfTest {
 	[System.ComponentModel.DesignerCategory("")] class TestForm : Form {
@@ -50,7 +52,13 @@ namespace SwfTest {
 			Text = "Just a test";
 			Visible = true;
 
+			#if !DOTNET2
 			Polygons = ExampleData.Polygons.ToList();
+			#else
+			Polygons = new List<Polygon>();
+			foreach (Polygon p in ExampleData.Polygons) Polygons.Add ( p );
+			#endif
+
 			foreach ( var poly in Polygons ) try {
 				P2T.Triangulate(poly);
 			} catch ( Exception ) {}

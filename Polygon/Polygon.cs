@@ -40,9 +40,11 @@
 
 using System;
 using System.Collections.Generic;
+#if !DOTNET2
 using System.Linq;
+#endif
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public class Polygon : Triangulatable {
 		protected List<TriangulationPoint> _points = new List<TriangulationPoint>();
 		protected List<TriangulationPoint> _steinerPoints;
@@ -70,11 +72,13 @@ namespace Poly2Tri {
 			if (points[0].Equals(points[points.Count - 1])) _points.RemoveAt(_points.Count - 1);
 		}
 
+#if !DOTNET2
 		/// <summary>
 		/// Create a polygon from a list of at least 3 points with no duplicates.
 		/// </summary>
 		/// <param name="points">A list of unique points.</param>
 		public Polygon( IEnumerable<PolygonPoint> points ): this( (points as IList<PolygonPoint>) ?? points.ToArray() ) {}
+#endif
 
 		/// <summary>
 		/// Create a polygon from a list of at least 3 points with no duplicates.

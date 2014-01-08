@@ -31,7 +31,7 @@
 
 using System;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public class PolygonGenerator {
 		static readonly Random RNG = new Random();
 

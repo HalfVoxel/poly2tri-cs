@@ -31,8 +31,9 @@
 
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	class PolygonInfo {
 		public string Name { get; private set; }
 		public TimeSpan LastTriangulationDuration { get; private set; }
@@ -47,7 +48,11 @@ namespace Poly2Tri {
 		}
 
 		static Polygon CleanClone( Polygon polygon ) {
-			var n = new Polygon(polygon.Points.Select( p => new PolygonPoint(p.X,p.Y) ) );
+			List<PolygonPoint> pts = new List<PolygonPoint> ();
+			for (int i = 0; i < polygon.Points.Count; i++)
+				pts.Add (new PolygonPoint (polygon.Points [i].X, polygon.Points [i].Y));
+
+			var n = new Polygon( pts );
 			if ( polygon.Holes!=null ) foreach ( var hole in polygon.Holes ) n.AddHole(CleanClone(hole));
 			return n;
 		}

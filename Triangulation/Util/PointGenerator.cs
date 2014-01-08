@@ -32,7 +32,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Poly2Tri {
+namespace Pathfinding.Poly2Tri {
 	public class PointGenerator {
 		static readonly Random RNG = new Random();
 
